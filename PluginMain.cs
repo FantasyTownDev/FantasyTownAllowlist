@@ -8,6 +8,7 @@ public class FantasyTownAllowList : IPluginInitializer
     Logger logger = new("FantasyTownAllowlist");
     Allowlist allowlistMgr = new();
     Events e = new();
+    RegCommand reg = new();
     //元信息
     public Dictionary<string, string> MetaData => new()
     {
@@ -20,6 +21,9 @@ public class FantasyTownAllowList : IPluginInitializer
     //载入
     public void OnInitialize()
     {
+        logger.info.WriteLine("Registering Commands...");
+        logger.info.WriteLine("正在注册命令……");
+        reg.CommandRegisiter();
         Task.Run(() =>
         {
             Thread.Sleep(5500);
