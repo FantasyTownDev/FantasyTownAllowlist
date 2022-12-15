@@ -9,11 +9,11 @@
         /// <summary>
         /// 玩家Xuid
         /// </summary>
-        public int XUID { get; set; }
+        public string XUID { get; set; }
         /// <summary>
         /// 玩家最后登录时间
         /// </summary>
-        public int LastJoin { get; set; }
+        public long LastJoin { get; set; }
     }
     //public class Root
     //{

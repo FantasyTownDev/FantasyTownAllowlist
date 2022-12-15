@@ -1,6 +1,7 @@
 ﻿using LLNET.Logger;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 
 namespace FantasyTownAllowlist
@@ -70,9 +71,39 @@ namespace FantasyTownAllowlist
         /// 写白名单
         /// </summary>
         /// <param name="Player">玩家名</param>
+        /// <param name="Xuid">Xuid</param>
+        /// <param name="LastJoin">最后加入时间</param>
         /// <returns></returns>
-        public bool Write(string Player)
+        public bool Write(string Player, string Xuid = "", long LastJoin = 0)
         {
+            try
+            {
+                //List<AllowlistFile> allowlist = new List<AllowlistFile>();
+                AllowlistFile allowlist = new()
+                {
+                    Name = Player,
+                    XUID = Xuid,
+                    LastJoin = LastJoin
+                };
+                List<AllowlistFile>? list = JsonConvert.DeserializeObject<List<AllowlistFile>>(Read());
+                list.Add(allowlist);
+                string json = JsonConvert.SerializeObject(list);
+                using (FileStream fs = new(FilePath, FileMode.Create, FileAccess.Write, FileShare.ReadWrite))
+                {
+                    using (StreamWriter sw = new(fs, Encoding.UTF8))
+                    {
+                        sw.Write(json);
+                        sw.Close();
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                logger.Error.WriteLine("修改白名单时出错：" + e.Message);
+                logger.Error.WriteLine("Error editing allowlist file: " + e.Message);
+                return false;
+                throw;
+            }
             return true;
         }
         /// <summary>
