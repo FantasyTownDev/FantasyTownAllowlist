@@ -15,7 +15,6 @@ namespace FantasyTownAllowlist
         /// <returns></returns>
         private bool PlayerInAllowlist(string Name)
         {
-            Console.WriteLine(allowlistMgr.Read());
             List<AllowlistFile>? list = JsonConvert.DeserializeObject<List<AllowlistFile>>(allowlistMgr.Read());
             if (list == null || list.Count == 0)
                 return false;
@@ -23,7 +22,6 @@ namespace FantasyTownAllowlist
             {
                 foreach (var item in list)
                 {
-                    Console.WriteLine("2");
                     if (item.Name == Name)
                         return true;
                 }
