@@ -1,16 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <Platforms>AnyCPU;x64;x86</Platforms>
-    <Version>1.5.0</Version>
+    <Version>1.5.0-pre4</Version>
     <Authors>Liten_PanJun</Authors>
-    <Company>FantasyTown</Company>
+    <Company>FantasyTownDev</Company>
     <Copyright>Cpoyright © 2022 FantasyTown</Copyright>
-    <AssemblyVersion>1.5.0.2</AssemblyVersion>
-    <FileVersion>1.5.0 Pre-release2</FileVersion>
+    <AssemblyVersion>1.5.0.4</AssemblyVersion>
+    <FileVersion>1.5.0 Pre-release4</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
