@@ -34,7 +34,6 @@ namespace FantasyTownAllowlist
             PlayerPreJoinEvent.Subscribe(e =>
             {
                 string Name = e.Player.Name;
-                Console.WriteLine(Name);
                 if (PlayerInAllowlist(Name) == false)
                 {
                     e.Player.Kick("你还没有服务器白名单，请联系你所在的服务器的管理员！");
