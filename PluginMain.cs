@@ -21,8 +21,6 @@ public class FantasyTownAllowList : IPluginInitializer
     //载入
     public void OnInitialize()
     {
-        logger.info.WriteLine("Registering Commands...");
-        logger.info.WriteLine("正在注册命令……");
         reg.CommandRegisiter();
         Task.Run(() =>
         {
