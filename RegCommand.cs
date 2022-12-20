@@ -2,16 +2,19 @@
 using LLNET.DynamicCommand;
 using static LLNET.DynamicCommand.DynamicCommand;
 using LLNET.Logger;
+using Newtonsoft.Json;
 
 namespace FantasyTownAllowlist
 {
     internal class RegCommand
     {
         Logger logger = new("FantasyTownAllowlist");
-        DynamicCommandInstance cmd = CreateCommand("allowlist", "Allowlist Commands", CommandPermissionLevel.Admin);
+        DynamicCommandInstance cmd = CreateCommand("ftallowlist", "Allowlist Commands", CommandPermissionLevel.GameMasters);
         Allowlist allowlistMag = new();
         public void CommandRegisiter()
         {
+            logger.info.WriteLine("Registering Commands...");
+            logger.info.WriteLine("正在注册命令……");
             var AllowlistOperate = cmd.SetEnum("Operate Allowlist", new() { "add", "remove" }); //增删操作指令枚举
             var Allowlister = cmd.SetEnum("List the player in the Allowlist", new() { "list" }); //列出白名单指令枚举
             //设置指令参数
@@ -20,32 +23,51 @@ namespace FantasyTownAllowlist
             cmd.Mandatory("PlayerName", ParameterType.String);
             //设置指令重载
             cmd.AddOverload(new List<string>() { AllowlistOperate, "PlayerName" });
-            cmd.AddOverload(new List<string>() { "TestOperation2" });
+            cmd.AddOverload(new List<string>() { Allowlister });
             //设置回调
             cmd.SetCallback((command, origin, output, results) => {
-                switch (results["OperateEnum"].AsString())
+                if (results != null && results.Count != 0)
                 {
-                    case "add":
+                    try
+                    {
+                        switch (results["OperateEnum"].Get())
                         {
-                            if ($"{results["PlayerName"].AsString}" != "" && $"{results["PlayerName"].AsString}" != null)
-                            {
-                                allowlistMag.Write($"{results["PlayerName"].AsString}");
-                                output.Success($"Add - {results["PlayerName"].AsString()}");
-                            }
-                            else output.Success("Error - PlayerName is null!");
+                            case "add":
+                                {
+                                    if ($"{results["PlayerName"].Get()}" != "" && $"{results["PlayerName"].Get()}" != null)
+                                    {
+                                        allowlistMag.Write($"{results["PlayerName"].Get()}");
+                                        output.Success($"Add - {results["PlayerName"].Get()}");
+
+                                    }
+                                    else
+                                    {
+                                        output.Error("Error - PlayerName is null!");
+                                    }
+                                }
+                                break;
+                            case "remove":
+                                {
+                                    output.Success($"Remove - {results["PlayerName"].Get()}");
+                                }
+                                break;
+                            default:
+                                break;
                         }
-                        break;
-                    case "remove":
-                        {
-                            //output.Success($"Remove - {results["testString"].AsString()}");
-                        }
-                        break;
-                    default:
-                        break;
+                    }
+                    catch (Exception e)
+                    {
+                        logger.error.WriteLine(e.Message);
+                        logger.error.WriteLine(e.Source);
+                        logger.error.WriteLine(e.StackTrace);
+                        throw;
+                    }
                 }
+                else logger.error.WriteLine("results is null or empty!");
             });
-            logger.info.WriteLine("Registering Commands...");
-            logger.info.WriteLine("正在注册命令……");
+            Setup(cmd);
+            logger.info.WriteLine("Commands Registered!");
+            logger.info.WriteLine("命令注册成功！");
         }
     }
 }
