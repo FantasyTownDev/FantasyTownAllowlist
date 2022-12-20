@@ -14,7 +14,9 @@
 - 以及更多…………
 
 以上所有功能都是在online-mode=false的情况下实现哒！~~（废话）~~
+
 然而，在原版BDS中，且online-mode=false的情况下，是无法实现这些功能的~~（还是废话）~~
+
 但是！在LiteLoaderBDS以及LoatLoaderBds.NET的支持下，我们实现啦！~~（商业互吹）~~
 
 欢迎使用，由Minecraft 幻梦之乡-FantasyTown基岩版服务器开发组倾情制作的**FantasyTownAllowlist**！！
