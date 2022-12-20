@@ -3,6 +3,7 @@ using LLNET.DynamicCommand;
 using static LLNET.DynamicCommand.DynamicCommand;
 using LLNET.Logger;
 using Newtonsoft.Json;
+using System.Xml.Linq;
 
 namespace FantasyTownAllowlist
 {
@@ -10,7 +11,7 @@ namespace FantasyTownAllowlist
     {
         Logger logger = new("FantasyTownAllowlist");
         DynamicCommandInstance cmd = CreateCommand("ftallowlist", "Allowlist Commands", CommandPermissionLevel.GameMasters);
-        Allowlist allowlistMag = new();
+        Allowlist allowlistMgr = new();
         public void CommandRegisiter()
         {
             logger.info.WriteLine("Registering Commands...");
@@ -36,8 +37,8 @@ namespace FantasyTownAllowlist
                                 {
                                     if ($"{results["PlayerName"].Get()}" != "" && $"{results["PlayerName"].Get()}" != null)
                                     {
-                                        allowlistMag.Write($"{results["PlayerName"].Get()}");
-                                        output.Success($"Add - {results["PlayerName"].Get()}");
+                                        allowlistMgr.Write($"{results["PlayerName"].Get()}");
+                                        output.Success($"{results["PlayerName"].Get()} was added in allowlist!");
 
                                     }
                                     else
@@ -48,7 +49,32 @@ namespace FantasyTownAllowlist
                                 break;
                             case "remove":
                                 {
-                                    output.Success($"Remove - {results["PlayerName"].Get()}");
+                                    allowlistMgr.Delete($"{results["PlayerName"].Get()}");
+                                    output.Success($"{results["PlayerName"].Get()} was removed from allowlist!");
+                                }
+                                break;
+                            default:
+                                break;
+                        }
+                        switch (results["Lister"].Get())
+                        {
+                            case "list":
+                                {
+                                    List<AllowlistFile>? list = JsonConvert.DeserializeObject<List<AllowlistFile>>(allowlistMgr.Read());
+                                    string pln = "";
+                                    if (list == null || list.Count == 0)
+                                        break;
+                                    else
+                                    {
+                                        foreach (var item in list)
+                                        {
+                                            if (pln == "")
+                                                pln = item.Name;
+                                            else pln += $", {item.Name}";
+                                        }
+                                    }
+                                    logger.info.WriteLine("There are players in allowlist:");
+                                    logger.info.WriteLine(pln);
                                 }
                                 break;
                             default:
