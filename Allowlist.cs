@@ -120,5 +120,49 @@ namespace FantasyTownAllowlist
                 }
             }
         }
+        /// <summary>
+        /// 删白名单
+        /// </summary>
+        /// <param name="Player">玩家名</param>
+        /// <returns></returns>
+        public bool Delete(string Player)
+        {
+            try
+            {
+                List<AllowlistFile>? list = JsonConvert.DeserializeObject<List<AllowlistFile>>(Read());
+                int n = 0;
+                if (list == null || list.Count == 0)
+                    logger.error.WriteLine("白名单为空，无法删除！");
+                else
+                {
+                    foreach (var item in list)
+                    {
+                        if (item.Name == Player)
+                        {
+                            break;
+                        }
+                        else n++;
+                    }
+                    list.RemoveAt(n);
+                    string json = JsonConvert.SerializeObject(list);
+                    using (FileStream fs = new(FilePath, FileMode.Create, FileAccess.Write, FileShare.ReadWrite))
+                    {
+                        using (StreamWriter sw = new(fs, Encoding.UTF8))
+                        {
+                            sw.Write(json);
+                            sw.Close();
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                logger.Error.WriteLine("修改白名单时出错：" + e.Message);
+                logger.Error.WriteLine("Error editing allowlist file: " + e.Message);
+                return false;
+                throw;
+            }
+            return true;
+        }
     }
 }
