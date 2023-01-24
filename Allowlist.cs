@@ -37,6 +37,26 @@ namespace FantasyTownAllowlist
             }
         }
         /// <summary>
+        /// 判断玩家是否在白名单中
+        /// </summary>
+        /// <param name="Name">玩家名</param>
+        /// <returns></returns>
+        public bool PlayerInAllowlist(string Name)
+        {
+            List<AllowlistFile>? list = JsonConvert.DeserializeObject<List<AllowlistFile>>(allowlistMgr.Read());
+            if (list == null || list.Count == 0)
+                return false;
+            else
+            {
+                foreach (var item in list)
+                {
+                    if (item.Name == Name)
+                        return true;
+                }
+                return false;
+            }
+        }
+        /// <summary>
         /// 创建白名单文件
         /// </summary>
         /// <param name="File">文件路径</param>
