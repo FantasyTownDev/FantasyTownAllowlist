@@ -74,7 +74,7 @@ namespace FantasyTownAllowlist
         /// <param name="Xuid">Xuid</param>
         /// <param name="LastJoin">最后加入时间</param>
         /// <returns></returns>
-        public bool Write(string Player, string Xuid = "", long LastJoin = 0)
+        public bool Write(string Player, string Xuid = "", string UUID = "", long LastJoin = 0)
         {
             try
             {
@@ -83,6 +83,7 @@ namespace FantasyTownAllowlist
                 {
                     Name = Player,
                     XUID = Xuid,
+                    UUID = UUID,
                     LastJoin = LastJoin
                 };
                 List<AllowlistFile>? list = JsonConvert.DeserializeObject<List<AllowlistFile>>(Read());

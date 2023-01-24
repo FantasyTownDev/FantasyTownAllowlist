@@ -11,6 +11,10 @@
         /// </summary>
         public string XUID { get; set; }
         /// <summary>
+        /// 玩家UUID
+        /// </summary>
+        public string UUID { get; set; }
+        /// <summary>
         /// 玩家最后登录时间
         /// </summary>
         public long LastJoin { get; set; }
