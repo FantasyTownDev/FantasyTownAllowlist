@@ -1,4 +1,4 @@
-﻿using LLNET.Logger;
+﻿using LiteLoader.Logger;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Reflection.Metadata.Ecma335;

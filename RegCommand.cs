@@ -1,9 +1,8 @@
 ﻿using MC;
-using LLNET.DynamicCommand;
-using static LLNET.DynamicCommand.DynamicCommand;
-using LLNET.Logger;
+using LiteLoader.DynamicCommand;
+using static LiteLoader.DynamicCommand.DynamicCommand;
+using LiteLoader.Logger;
 using Newtonsoft.Json;
-using System.Xml.Linq;
 
 namespace FantasyTownAllowlist
 {

@@ -1,5 +1,5 @@
-﻿using LLNET.Event;
-using LLNET.Logger;
+﻿using LiteLoader.Event;
+using LiteLoader.Logger;
 using Newtonsoft.Json;
 using System.Text;
 

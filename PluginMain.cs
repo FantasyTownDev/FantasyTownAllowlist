@@ -1,5 +1,5 @@
-﻿using LLNET.Core;
-using LLNET.Logger;
+﻿using LiteLoader.NET;
+using LiteLoader.Logger;
 
 namespace FantasyTownAllowlist;
 [PluginMain("FantasyTownAllowlist")]
