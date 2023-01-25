@@ -90,13 +90,13 @@ namespace FantasyTownAllowlist
         /// </summary>
         /// <param name="Player">玩家名</param>
         /// <param name="Xuid">Xuid</param>
+        /// <param name="UUID">UUID</param>
         /// <param name="LastJoin">最后加入时间</param>
         /// <returns></returns>
         public bool Write(string Player, string Xuid = "", string UUID = "", long LastJoin = 0)
         {
             try
             {
-                //List<AllowlistFile> allowlist = new List<AllowlistFile>();
                 AllowlistFile allowlist = new()
                 {
                     Name = Player,

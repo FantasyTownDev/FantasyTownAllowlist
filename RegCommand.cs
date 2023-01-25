@@ -34,11 +34,17 @@ namespace FantasyTownAllowlist
                         {
                             case "add":
                                 {
-                                    if ($"{results["PlayerName"].Get()}" != "" && $"{results["PlayerName"].Get()}" != null)
+                                    if ($"{results["PlayerName"].AsString()}" != "" && $"{results["PlayerName"].AsString()}" != null)
                                     {
-                                        allowlistMgr.Write($"{results["PlayerName"].Get()}");
-                                        output.Success($"{results["PlayerName"].Get()} was added in allowlist!");
-
+                                        if(allowlistMgr.PlayerInAllowlist($"{results["PlayerName"].AsString()}"))
+                                        {
+                                            output.Error($"{results["PlayerName"].AsString()} already in allowlist");
+                                        }
+                                        else
+                                        {
+                                            allowlistMgr.Write($"{results["PlayerName"].AsString()}");
+                                            output.Success($"{results["PlayerName"].AsString()} was added in allowlist!");
+                                        }
                                     }
                                     else
                                     {
@@ -48,8 +54,15 @@ namespace FantasyTownAllowlist
                                 break;
                             case "remove":
                                 {
-                                    allowlistMgr.Delete($"{results["PlayerName"].Get()}");
-                                    output.Success($"{results["PlayerName"].Get()} was removed from allowlist!");
+                                    if (allowlistMgr.PlayerInAllowlist($"{results["PlayerName"].AsString()}"))
+                                    {
+                                        allowlistMgr.Delete($"{results["PlayerName"].AsString()}");
+                                        output.Success($"{results["PlayerName"].AsString()} was removed from allowlist!");
+                                    }
+                                    else
+                                    {
+                                        output.Error($"{results["PlayerName"].AsString()} not in allowlist!")
+                                    }
                                 }
                                 break;
                             default:
