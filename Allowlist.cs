@@ -1,6 +1,8 @@
 ﻿using LiteLoader.Logger;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.Text;
+using System.Xml.Linq;
 
 namespace FantasyTownAllowlist
 {
@@ -105,7 +107,23 @@ namespace FantasyTownAllowlist
                     LastJoin = LastJoin
                 };
                 List<AllowlistFile>? list = JsonConvert.DeserializeObject<List<AllowlistFile>>(Read());
-                list.Add(allowlist);
+                if (PlayerInAllowlist(Player))
+                {
+                    List<AllowlistFile>? _allowlist = new() { allowlist };
+                    int i = 0;
+                    foreach (var item in list)
+                    {
+                        if (item.Name == Player)
+                            break;
+                        i++;
+                    }
+                    list.RemoveRange(i, i + 1);
+                    list.InsertRange(i, _allowlist);
+                }
+                else
+                {
+                    list.Add(allowlist);
+                }
                 string json = JsonConvert.SerializeObject(list);
                 using (FileStream fs = new(FilePath, FileMode.Create, FileAccess.Write, FileShare.ReadWrite))
                 {
