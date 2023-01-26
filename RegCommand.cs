@@ -61,7 +61,7 @@ namespace FantasyTownAllowlist
                                     }
                                     else
                                     {
-                                        output.Error($"{results["PlayerName"].AsString()} not in allowlist!")
+                                        output.Error($"{results["PlayerName"].AsString()} not in allowlist!");
                                     }
                                 }
                                 break;
