@@ -10,6 +10,11 @@ namespace FantasyTownAllowlist
         Allowlist allowlistMgr = new();
         public void playerJoin()
         {
+            //服务器开启后执行的
+            ServerStartedEvent.Subscribe(e =>
+            {
+                return true;
+            });
             //预进入，检查白名单
             PlayerPreJoinEvent.Subscribe(e =>
             {
