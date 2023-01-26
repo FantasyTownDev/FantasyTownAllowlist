@@ -9,33 +9,7 @@ namespace FantasyTownAllowlist
     internal class Allowlist
     {
         string FilePath = ".\\plugins\\FantasyTown\\Allowlist\\allowlist.json";
-        string OldFile = ".\\plugins\\FantasyTown\\allowlist\\allowlist.json";
         Logger logger = new("FantasyTownAllowlist");
-        public void Start()
-        {
-            if (File.Exists(OldFile) == false && File.Exists(FilePath) == false)
-            {
-                logger.Info.WriteLine("检测到白名单文件不存在，正在创建……");
-                logger.Info.WriteLine("Allowlist file does not exist, creating...");
-                Directory.CreateDirectory(".\\plugins\\FantasyTown\\Allowlist");
-                Create();
-            }
-            else if (File.Exists(OldFile) == true && File.Exists(FilePath) == false)
-            {
-                logger.Info.WriteLine("暂不支持旧版本白名单文件自动迁移，请手动迁移");
-                logger.Info.WriteLine("检测到新版本白名单文件不存在，正在创建……");
-                logger.Info.WriteLine("Automatic migration of old allowlist files is not supported, please migrate manually");
-                logger.Info.WriteLine("New allowlist file does not exist, creating...");
-                Create();
-            }
-            else if (File.Exists(OldFile) == false && File.Exists(FilePath) == true)
-            {
-                logger.Info.WriteLine("检测到白名单文件不存在，正在创建……");
-                logger.Info.WriteLine("Allowlist file does not exist, creating...");
-                Directory.CreateDirectory(".\\plugins\\FantasyTown\\Allowlist");
-                Create();
-            }
-        }
         /// <summary>
         /// 判断玩家是否在白名单中
         /// </summary>

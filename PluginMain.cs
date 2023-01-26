@@ -22,15 +22,7 @@ public class FantasyTownAllowList : IPluginInitializer
     public void OnInitialize()
     {
         reg.CommandRegisiter();
-        Task.Run(() =>
-        {
-            Thread.Sleep(5500);
-            logger.info.WriteLine("FantasyTownAllowlist is loaded!");
-            logger.info.WriteLine("FantasyTownAllowlist已加载！");
-            logger.info.WriteLine("Plugin version: " + Version.ToString());
-            logger.info.WriteLine("插件版本：" + Version.ToString());
-            allowlistMgr.Start();
-        });
         e.playerJoin();
+        e.ServerStrated(Version);
     }
 }
