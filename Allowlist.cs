@@ -143,7 +143,7 @@ namespace FantasyTownAllowlist
                 List<AllowlistFile>? list = JsonConvert.DeserializeObject<List<AllowlistFile>>(Read());
                 int n = 0;
                 if (list == null || list.Count == 0)
-                    logger.error.WriteLine("白名单为空，无法删除！");
+                    logger.Error.WriteLine("白名单为空，无法删除！");
                 else
                 {
                     foreach (var item in list)

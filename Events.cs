@@ -14,10 +14,10 @@ namespace FantasyTownAllowlist
             //服务器开启后执行的
             ServerStartedEvent.Subscribe(e =>
             {
-                logger.info.WriteLine("FantasyTownAllowlist is loaded!");
-                logger.info.WriteLine("FantasyTownAllowlist已加载！");
-                logger.info.WriteLine("Plugin version: " + version.ToString());
-                logger.info.WriteLine("插件版本：" + version.ToString());
+                logger.Info.WriteLine("FantasyTownAllowlist is loaded!");
+                logger.Info.WriteLine("FantasyTownAllowlist已加载！");
+                logger.Info.WriteLine("Plugin version: " + version.ToString());
+                logger.Info.WriteLine("插件版本：" + version.ToString());
                 if (File.Exists(OldFile) == false && File.Exists(FilePath) == false)
                 {
                     logger.Info.WriteLine("检测到白名单文件不存在，正在创建……");

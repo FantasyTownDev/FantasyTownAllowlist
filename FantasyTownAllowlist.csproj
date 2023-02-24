@@ -38,12 +38,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove=".gitignore" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
   <ItemGroup>
     <Reference Include="LiteLoader.NET">
-      <HintPath>..\LiteLoader\LiteLoader.NET.dll</HintPath>
+      <HintPath>..\.lib\SDK-dotnet\LiteLoader\LiteLoader.NET.dll</HintPath>
     </Reference>
   </ItemGroup>
 

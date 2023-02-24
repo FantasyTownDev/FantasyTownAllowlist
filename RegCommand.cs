@@ -13,8 +13,8 @@ namespace FantasyTownAllowlist
         Allowlist allowlistMgr = new();
         public void CommandRegisiter()
         {
-            logger.info.WriteLine("Registering Commands...");
-            logger.info.WriteLine("正在注册命令……");
+            logger.Info.WriteLine("Registering Commands...");
+            logger.Info.WriteLine("正在注册命令……");
             var AllowlistOperate = cmd.SetEnum("Operate Allowlist", new() { "add", "remove" }); //增删操作指令枚举
             var Allowlister = cmd.SetEnum("List the player in the Allowlist", new() { "list" }); //列出白名单指令枚举
             //设置指令参数
@@ -85,8 +85,8 @@ namespace FantasyTownAllowlist
                                             else pln += $", {item.Name}";
                                         }
                                     }
-                                    logger.info.WriteLine("There are players in allowlist:");
-                                    logger.info.WriteLine(pln);
+                                    logger.Info.WriteLine("There are players in allowlist:");
+                                    logger.Info.WriteLine(pln);
                                 }
                                 break;
                             default:
@@ -95,17 +95,17 @@ namespace FantasyTownAllowlist
                     }
                     catch (Exception e)
                     {
-                        logger.error.WriteLine(e.Message);
-                        logger.error.WriteLine(e.Source);
-                        logger.error.WriteLine(e.StackTrace);
+                        logger.Error.WriteLine(e.Message);
+                        logger.Error.WriteLine(e.Source);
+                        logger.Error.WriteLine(e.StackTrace);
                         throw;
                     }
                 }
-                else logger.error.WriteLine("results is null or empty!");
+                else logger.Error.WriteLine("results is null or empty!");
             });
             Setup(cmd);
-            logger.info.WriteLine("Commands Registered!");
-            logger.info.WriteLine("命令注册成功！");
+            logger.Info.WriteLine("Commands Registered!");
+            logger.Info.WriteLine("命令注册成功！");
         }
     }
 }
