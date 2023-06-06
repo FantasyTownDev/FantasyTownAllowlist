@@ -47,7 +47,7 @@
 
   <ItemGroup>
     <Reference Include="LiteLoader.NET">
-      <HintPath>..\.lib\SDK-dotnet\LiteLoader\LiteLoader.NET.dll</HintPath>
+      <HintPath>..\_Lib\LiteLoader\LiteLoader.NET.dll</HintPath>
     </Reference>
   </ItemGroup>
 
